@@ -14,6 +14,7 @@ module ascon_fsm (
 
 );
 
+/* ASCON */
 logic         init_w;
 logic         associate_data_w;
 logic         finalisation_w;
@@ -26,6 +27,12 @@ logic         cipher_valid_w;
 logic         end_tag_w;
 logic         end_initialisation_w;
 logic         end_cipher_w;
+
+/* Compteur */
+logic         en_compteur_w;
+logic         init_compteur_w;
+logic [N_bits : 0] compteur_w;
+
 
 ascon ASCON_0(
 
@@ -45,6 +52,15 @@ ascon ASCON_0(
     .end_tag_o(end_tag_w),
     .end_initialisation_o(end_initialisation_w),
     .end_cipher_o(end_cipher_w)
+
+);
+
+compteur_Nbits #(N_bits=5) C0(
+    .clock_i(clock_i),
+    .resetb_i(reset_i)
+    .en_i(en_compteur_w)
+    .init_i(init_compteur_w)
+    .data_o(compteur_w)
 
 );
 
@@ -130,7 +146,7 @@ typedef enum {
 
         cipher_stop:
             begin
-                if (i_cipher == 22) next_state = cipher_end; // On s'arrête à 22, car le dernier à lieu avec la finalisation
+                if (compteur_w == 22) next_state = cipher_end; // On s'arrête à 22, car le dernier à lieu avec la finalisation
                 else next_state = cipher_init;
             end
 
@@ -152,85 +168,166 @@ always_comb begin : fsm_cache_date
     case (current_state)
         idle:
             begin
-                assign init_w = ;
-                assign associate_data_w = ;
-                assign finalisation_w = ;
-                assign data_w = ;
-                assign data_valid_w = ;
+                assign init_w = 1'b0;
+                assign associate_data_w = 1'b0;
+                assign finalisation_w = 1'b0;
+                assign data_w = 0;
+                assign data_valid_w = 1'b0;
 
-                assign end_associate_w = ;
-                assign cipher_w = ;
-                assign cipher_valid_w = ;
-                assign end_tag_w = ;
-                assign end_initialisation_w = ;
-                assign end_cipher_w = ;
+                assign en_compteur_w = 1'b0;
+                assign init_compteur_w = 1'b0;
+                assign compteur_w = 1'b0;
             end
 
         init_ascon:
             begin
-                if (end_initialisation_o == 1'b1) next_state = end_init_ascon;
-                else next_state = init_ascon;
+                assign init_w = 1'b1;
+                assign associate_data_w = 1'b0;
+                assign finalisation_w = 1'b0;
+                assign data_w = 0;
+                assign data_valid_w = 1'b0;
+
+                assign en_compteur_w = 1'b0;
+                assign init_compteur_w = 1'b0;
+                assign compteur_w = 1'b0;
             end
 
         end_init_ascon:
             begin
-                next_state = associated_data_init;
+                assign init_w = 1'b0;
+                assign associate_data_w = 1'b0;
+                assign finalisation_w = 1'b0;
+                assign data_w = 0;
+                assign data_valid_w = 1'b0;
+
+                assign en_compteur_w = 1'b0;
+                assign init_compteur_w = 1'b0;
+                assign compteur_w = 1'b0;
             end
 
 
         associated_data_init:
             begin
-                next_state = associated_data_set;
+                assign init_w = 1'b0;
+                assign associate_data_w = 1'b1;
+                assign finalisation_w = 1'b0;
+                assign data_w = 0;
+                assign data_valid_w = 1'b0;
+
+                assign en_compteur_w = 1'b0;
+                assign init_compteur_w = 1'b0;
+                assign compteur_w = 1'b0;
             end
 
         associated_data_set:
             begin
-                if (end_associate_o == 1'b1) next_state = associated_data_end;
-                else next_state = associated_data_set;
+                assign init_w = 1'b0;
+                assign associate_data_w = 1'b1;
+                assign finalisation_w = 1'b0;
+                assign data_w = da_i;
+                assign data_valid_w = 1'b1;
+
+                assign en_compteur_w = 1'b0;
+                assign init_compteur_w = 1'b0;
+                assign compteur_w = 1'b0;
             end
 
         associated_data_end:
             begin
-                next_state = cipher_init;
+                assign init_w = 1'b0;
+                assign associate_data_w = 1'b0;
+                assign finalisation_w = 1'b0;
+                assign data_w = 0;
+                assign data_valid_w = 1'b0;
+
+                assign en_compteur_w = 1'b0;
+                assign init_compteur_w = 1'b0;
+                assign compteur_w = 1'b0;
             end
 
         cipher_init:
             begin
-                next_state = cipher_init;
+                assign init_w = 1'b0;
+                assign associate_data_w = 1'b0;
+                assign finalisation_w = 1'b0;
+                assign data_w = 0;
+                assign data_valid_w = 1'b0;
+
+                assign en_compteur_w = 1'b0;
+                assign init_compteur_w = 1'b1;
+                assign compteur_w = 1'b1;
             end
 
         plain_text_set:
             begin
-                if (cipher_valid_o == 1'b1) next_state = cipher_data_get;
-                else next_state = plain_text_set;
+                assign init_w = 1'b0;
+                assign associate_data_w = 1'b0;
+                assign finalisation_w = 1'b0;
+                assign data_w = plain_text_i[compteur_w*64+63:64*(compteur_w-1)];
+                assign data_valid_w = 1'b1;
+
+                assign en_compteur_w = 1'b1;
+                assign init_compteur_w = 1'b0;
             end
 
         cipher_data_get:
             begin
-                if (end_cipher_o == 1'b1) next_state = cipher_stop;
-                else next_state = plain_text_set;
+                assign init_w = 1'b0;
+                assign associate_data_w = 1'b0;
+                assign finalisation_w = 1'b0;
+                assign data_w = 0;
+                assign data_valid_w = 1'b0;
+
+                assign en_compteur_w = 1'b0;
+                assign init_compteur_w = 1'b0;
             end
 
         cipher_stop:
             begin
-                if (i_cipher == 22) next_state = cipher_end; // On s'arrête à 22, car le dernier à lieu avec la finalisation
-                else next_state = cipher_init;
+                assign init_w = 1'b0;
+                assign associate_data_w = 1'b0;
+                assign finalisation_w = 1'b0;
+                assign data_w = 0;
+                assign data_valid_w = 1'b0;
+
+                assign en_compteur_w = 1'b0;
+                assign init_compteur_w = 1'b0;
             end
 
         cipher_end:
             begin
-                if (end_tag_o == 1'b1) next_state = end_ascon; // On réalise la finalisation
-                else next_state = cipher_end;
+                assign init_w = 1'b0;
+                assign associate_data_w = 1'b0;
+                assign finalisation_w = 1'b1;
+                assign data_w = plain_text_i[23*64+63:64*(23-1)];
+                assign data_valid_w = 1'b1;
+
+                assign en_compteur_w = 1'b0;
+                assign init_compteur_w = 1'b0;
             end
         end_ascon:
             begin
-                next_state = idle;
+                assign init_w = 1'b0;
+                assign associate_data_w = 1'b0;
+                assign finalisation_w = 1'b0;
+                assign data_w = 0;
+                assign data_valid_w = 1'b0;
+
+                assign en_compteur_w = 1'b0;
+                assign init_compteur_w = 1'b0;
             end
 
 
         default: 
             begin
-                
+                assign init_w = 1'b0;
+                assign associate_data_w = 1'b0;
+                assign finalisation_w = 1'b0;
+                assign data_w = 0;
+                assign data_valid_w = 1'b0;
+
+                assign en_compteur_w = 1'b0;
+                assign init_compteur_w = 1'b0;  
             end
     endcase
 end
