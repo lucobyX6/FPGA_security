@@ -7,7 +7,7 @@ module ascon_fsm (
     input [1447:0] plain_text_i,
     input [127:0] key_i,
     input [127:0] nonce_i,
-    input [63:0] da_i
+    input [63:0] da_i,
 
     output [127:0] tag_o,
     output [1447:0] cipher_o
@@ -31,7 +31,7 @@ logic         end_cipher_w;
 /* Compteur */
 logic         en_compteur_w;
 logic         init_compteur_w;
-logic [N_bits : 0] compteur_w;
+logic [22 : 0] compteur_w;
 
 
 ascon ASCON_0(
@@ -55,11 +55,11 @@ ascon ASCON_0(
 
 );
 
-compteur_Nbits #(N_bits=5) C0(
+compteur_Nbits #(.N_bits(5)) C0(
     .clock_i(clock_i),
-    .resetb_i(reset_i)
-    .en_i(en_compteur_w)
-    .init_i(init_compteur_w)
+    .resetb_i(reset_i),
+    .en_i(en_compteur_w),
+    .init_i(init_compteur_w),
     .data_o(compteur_w)
 
 );
@@ -101,7 +101,7 @@ typedef enum {
 
         init_ascon:
             begin
-                if (end_initialisation_o == 1'b1) next_state = end_init_ascon;
+                if (end_initialisation_w == 1'b1) next_state = end_init_ascon;
                 else next_state = init_ascon;
             end
 
@@ -118,7 +118,7 @@ typedef enum {
 
         associated_data_set:
             begin
-                if (end_associate_o == 1'b1) next_state = associated_data_end;
+                if (end_associate_w == 1'b1) next_state = associated_data_end;
                 else next_state = associated_data_set;
             end
 
@@ -134,13 +134,13 @@ typedef enum {
 
         plain_text_set:
             begin
-                if (cipher_valid_o == 1'b1) next_state = cipher_data_get;
+                if (cipher_valid_w == 1'b1) next_state = cipher_data_get;
                 else next_state = plain_text_set;
             end
 
         cipher_data_get:
             begin
-                if (end_cipher_o == 1'b1) next_state = cipher_stop;
+                if (end_cipher_w == 1'b1) next_state = cipher_stop;
                 else next_state = plain_text_set;
             end
 
@@ -152,7 +152,7 @@ typedef enum {
 
         cipher_end:
             begin
-                if (end_tag_o == 1'b1) next_state = end_ascon; // On réalise la finalisation
+                if (end_tag_w == 1'b1) next_state = end_ascon; // On réalise la finalisation
                 else next_state = cipher_end;
             end
         end_ascon:
@@ -263,7 +263,32 @@ always_comb begin : fsm_cache_date
                 assign init_w = 1'b0;
                 assign associate_data_w = 1'b0;
                 assign finalisation_w = 1'b0;
-                assign data_w = plain_text_i[compteur_w*64+63:64*(compteur_w-1)];
+                case(compteur_w)
+                    0: assign data_w = plain_text_i[63:0];    
+                    1: assign data_w = plain_text_i[64+63:64];    
+                    2: assign data_w = plain_text_i[2*64+63:2*64];  
+                    3: assign data_w = plain_text_i[3*64+63:3*64]; 
+                    4: assign data_w = plain_text_i[4*64+63:4*64];   
+                    5: assign data_w = plain_text_i[5*64+63:5*64];  
+                    6: assign data_w = plain_text_i[6*64+63:6*64];  
+                    7: assign data_w = plain_text_i[7*64+63:7*64];  
+                    8: assign data_w = plain_text_i[8*64+63:8*64];  
+                    9: assign data_w = plain_text_i[9*64+63:9*64];  
+                    10: assign data_w = plain_text_i[10*64+63:10*64];
+                    11: assign data_w = plain_text_i[11*64+63:11*64];
+                    12: assign data_w = plain_text_i[12*64+63:12*64];
+                    13: assign data_w = plain_text_i[13*64+63:13*64];
+                    14: assign data_w = plain_text_i[14*64+63:14*64];
+                    15: assign data_w = plain_text_i[15*64+63:15*64];
+                    16: assign data_w = plain_text_i[16*64+63:16*64];
+                    17: assign data_w = plain_text_i[17*64+63:17*64];
+                    18: assign data_w = plain_text_i[18*64+63:18*64];
+                    19: assign data_w = plain_text_i[19*64+63:19*64];
+                    20: assign data_w = plain_text_i[20*64+63:20*64];
+                    21: assign data_w = plain_text_i[21*64+63:21*64];
+                    22: assign data_w = plain_text_i[22*64+63:22*64];
+                endcase     
+                    
                 assign data_valid_w = 1'b1;
 
                 assign en_compteur_w = 1'b1;
