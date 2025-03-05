@@ -1,0 +1,25 @@
+
+[INFO] - - - 2025-03-05 15:55:55.930553 - - - 
+[INFO] FPGA initialized on port COM15, baud rate: 115200
+[DEBUG] Sending memory adress
+[INFO] Memory value successfully written at address 0x0000
+[DEBUG] Message is valid  
+[INFO] Value successfully written at address 0x55
+[DEBUG] Beginning go sequence
+[INFO] Go sequence successfully completed
+[DEBUG] Beginning R acquisition
+[INFO] R acquisition successfully completed
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-05 15:56:02.621395 - - - 
+[INFO] FPGA initialized on port COM15, baud rate: 115200
+[DEBUG] Sending memory adress
+[INFO] Memory value successfully written at address 0x0000
+[DEBUG] Message is valid  
+[INFO] Value successfully written at address 0x55
+[DEBUG] Beginning go sequence
+[INFO] Go sequence successfully completed
+[DEBUG] Beginning R acquisition
+[INFO] R acquisition successfully completed
+[INFO] Connection closed successfully
+ 
