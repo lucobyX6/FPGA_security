@@ -26,8 +26,8 @@ ascon_fsm DUT(
     .key_i(key_w),
     .nonce_i(nonce_w),
     .da_i(da_w),
-    .tag_i(tag_w),
-    .cipher_i(cipher_w)
+    .tag_o(tag_w),
+    .cipher_o(cipher_w)
 );
 
 initial begin
@@ -36,8 +36,9 @@ initial begin
 	end
 
 initial begin
-    assign reset_w = 1'b1;
+    assign reset_w = 1'b0;
     #40
+    assign reset_w = 1'b1;
     assign start_w = 1'b1;
     end
 

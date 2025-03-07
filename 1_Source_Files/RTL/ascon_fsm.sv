@@ -4,15 +4,17 @@ module ascon_fsm (
     input clock_i,
     input reset_i,
     input start_i,
-    input [1447:0] plain_text_i,
+    input [1471:0] plain_text_i,
     input [127:0] key_i,
     input [127:0] nonce_i,
     input [63:0] da_i,
 
     output [127:0] tag_o,
-    output [1447:0] cipher_o
+    output [1471:0] cipher_o
 
 );
+
+reg [1471:0] cipher_o_reg;
 
 /* ASCON */
 logic         init_w;
@@ -31,14 +33,13 @@ logic         end_cipher_w;
 /* Compteur */
 logic         en_compteur_w;
 logic         init_compteur_w;
-logic [22 : 0] compteur_w;
-
+logic [22:0] compteur_w;
 
 ascon ASCON_0(
 
     .clock_i(clock_i),
-    .reset_i(reset_i),
-    .init_i(start_i),
+    .reset_i(!reset_i),
+    .init_i(init_w),
     .associate_data_i(associate_data_w),
     .finalisation_i(finalisation_w),
     .data_i(data_w),
@@ -63,6 +64,8 @@ compteur_Nbits #(.N_bits(5)) C0(
     .data_o(compteur_w)
 
 );
+
+assign cipher_o = cipher_o_reg; 
 
 typedef enum {
     idle,
@@ -129,7 +132,7 @@ typedef enum {
 
         cipher_init:
             begin
-                next_state = cipher_init;
+                next_state = plain_text_set;
             end
 
         plain_text_set:
@@ -146,8 +149,8 @@ typedef enum {
 
         cipher_stop:
             begin
-                if (compteur_w == 22) next_state = cipher_end; // On s'arrête à 22, car le dernier à lieu avec la finalisation
-                else next_state = cipher_init;
+                if (compteur_w >= 5'h16) next_state = cipher_end; // On s'arrête à 22, car le dernier à lieu avec la finalisation
+                else next_state = plain_text_set;
             end
 
         cipher_end:
@@ -176,7 +179,6 @@ always_comb begin : fsm_cache_date
 
                 assign en_compteur_w = 1'b0;
                 assign init_compteur_w = 1'b0;
-                assign compteur_w = 1'b0;
             end
 
         init_ascon:
@@ -189,7 +191,6 @@ always_comb begin : fsm_cache_date
 
                 assign en_compteur_w = 1'b0;
                 assign init_compteur_w = 1'b0;
-                assign compteur_w = 1'b0;
             end
 
         end_init_ascon:
@@ -202,7 +203,6 @@ always_comb begin : fsm_cache_date
 
                 assign en_compteur_w = 1'b0;
                 assign init_compteur_w = 1'b0;
-                assign compteur_w = 1'b0;
             end
 
 
@@ -216,7 +216,6 @@ always_comb begin : fsm_cache_date
 
                 assign en_compteur_w = 1'b0;
                 assign init_compteur_w = 1'b0;
-                assign compteur_w = 1'b0;
             end
 
         associated_data_set:
@@ -229,7 +228,6 @@ always_comb begin : fsm_cache_date
 
                 assign en_compteur_w = 1'b0;
                 assign init_compteur_w = 1'b0;
-                assign compteur_w = 1'b0;
             end
 
         associated_data_end:
@@ -242,7 +240,6 @@ always_comb begin : fsm_cache_date
 
                 assign en_compteur_w = 1'b0;
                 assign init_compteur_w = 1'b0;
-                assign compteur_w = 1'b0;
             end
 
         cipher_init:
@@ -253,9 +250,8 @@ always_comb begin : fsm_cache_date
                 assign data_w = 0;
                 assign data_valid_w = 1'b0;
 
-                assign en_compteur_w = 1'b0;
+                assign en_compteur_w = 1'b1;
                 assign init_compteur_w = 1'b1;
-                assign compteur_w = 1'b1;
             end
 
         plain_text_set:
@@ -291,7 +287,7 @@ always_comb begin : fsm_cache_date
                     
                 assign data_valid_w = 1'b1;
 
-                assign en_compteur_w = 1'b1;
+                assign en_compteur_w = 1'b0;
                 assign init_compteur_w = 1'b0;
             end
 
@@ -302,8 +298,34 @@ always_comb begin : fsm_cache_date
                 assign finalisation_w = 1'b0;
                 assign data_w = 0;
                 assign data_valid_w = 1'b0;
+                
+                case (compteur_w)
+                    0: cipher_o_reg[63:0] = cipher_w;
+                    1: cipher_o_reg[127:64] = cipher_w;
+                    2: cipher_o_reg[191:128] = cipher_w;
+                    3: cipher_o_reg[255:192] = cipher_w;
+                    4: cipher_o_reg[319:256] = cipher_w;
+                    5: cipher_o_reg[383:320] = cipher_w;
+                    6: cipher_o_reg[447:384] = cipher_w;
+                    7: cipher_o_reg[511:448] = cipher_w;
+                    8: cipher_o_reg[575:512] = cipher_w;
+                    9: cipher_o_reg[639:576] = cipher_w;
+                    10: cipher_o_reg[703:640] = cipher_w;
+                    11: cipher_o_reg[767:704] = cipher_w;
+                    12: cipher_o_reg[831:768] = cipher_w;
+                    13: cipher_o_reg[895:832] = cipher_w;
+                    14: cipher_o_reg[959:896] = cipher_w;
+                    15: cipher_o_reg[1023:960] = cipher_w;
+                    16: cipher_o_reg[1087:1024] = cipher_w;
+                    17: cipher_o_reg[1151:1088] = cipher_w;
+                    18: cipher_o_reg[1215:1152] = cipher_w;
+                    19: cipher_o_reg[1279:1216] = cipher_w;
+                    20: cipher_o_reg[1343:1280] = cipher_w;
+                    21: cipher_o_reg[1407:1344] = cipher_w;
+                    22: cipher_o_reg[1471:1408] = cipher_w;
+                endcase  
 
-                assign en_compteur_w = 1'b0;
+                assign en_compteur_w = 1'b1;
                 assign init_compteur_w = 1'b0;
             end
 
@@ -324,11 +346,12 @@ always_comb begin : fsm_cache_date
                 assign init_w = 1'b0;
                 assign associate_data_w = 1'b0;
                 assign finalisation_w = 1'b1;
-                assign data_w = plain_text_i[23*64+63:64*(23-1)];
+                assign data_w = plain_text_i[23*64+63:64*22];
                 assign data_valid_w = 1'b1;
 
                 assign en_compteur_w = 1'b0;
                 assign init_compteur_w = 1'b0;
+                cipher_o_reg[1471:1408] = cipher_w;
             end
         end_ascon:
             begin
