@@ -9,7 +9,7 @@ module compteur_Nbits
     input  logic         resetb_i,
     input  logic         en_i,
     input  logic         init_i,
-    output logic [N_bits : 0] data_o
+    output logic [N_bits-1 : 0] data_o
 );
 
   logic [N_bits:0] cpt_s;

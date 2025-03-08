@@ -2,6 +2,7 @@
 
 module ascon_fsm_tb ();
     
+// input
 logic clock_w;
 logic reset_w;
 logic start_w;
@@ -10,6 +11,7 @@ logic [127:0] key_w;
 logic [127:0] nonce_w;
 logic [63:0] da_w;
 
+// output
 logic [127:0] tag_w;
 logic [1471:0] cipher_w;
 

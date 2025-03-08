@@ -86,13 +86,13 @@ always_ff @(posedge clock_i, posedge reset_i) begin
 
         cipher_transmit:
         begin
-          if(shift_i == 1'b1) next_state = counter_shift_cipher;
+          if(shift_i == 1'b1) next_state = counter_shift;
           else next_state = cipher_transmit;
         end
 
         tag_transmit:
         begin
-          if(shift_i == 1'b1) next_state = counter_shift_tag;
+          if(shift_i == 1'b1) next_state = counter_shift;
           else next_state = tag_transmit;
         end
 
@@ -174,7 +174,7 @@ always_comb begin : fsm_register_date
           assign cipher_end_o = 1'b0;
           assign tag_o = 0;
 
-          case(compteur_w)
+          case(compteur_w):
             0: assign cipher_o = cipher_reg[7:0];
             1: assign cipher_o = cipher_reg[8+7:8];
             2: assign cipher_o = cipher_reg[16+7:16];
@@ -370,7 +370,7 @@ always_comb begin : fsm_register_date
           assign cipher_end_o = 1'b0;
           assign cipher_o = 0;
           
-          case(compteur_w)
+          case(compteur_w):
             0: assign tag_o = tag_reg[7:0];
             1: assign tag_o = tag_reg[8+7:8];
             2: assign tag_o = tag_reg[16+7:16];
