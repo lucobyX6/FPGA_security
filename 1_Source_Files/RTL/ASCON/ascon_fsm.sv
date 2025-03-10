@@ -53,8 +53,9 @@ ascon ASCON_0(
     .end_tag_o(end_tag_w),
     .end_initialisation_o(end_initialisation_w),
     .end_cipher_o(end_cipher_w)
-
 );
+
+assign 
 
 compteur_Nbits #(.N_bits(5)) C0(
     .clock_i(clock_i),
