@@ -33,7 +33,7 @@ logic         end_cipher_w;
 /* Compteur */
 logic         en_compteur_w;
 logic         init_compteur_w;
-logic [22:0] compteur_w;
+logic [4:0] compteur_w;
 
 ascon ASCON_0(
 
@@ -94,7 +94,7 @@ typedef enum {
     end
   end
 
-  always_comb begin : fsm_cache_state_choice
+  always_comb begin : fsm_ascon_state_choice
     case (current_state)
         idle:
             begin
@@ -166,7 +166,7 @@ typedef enum {
     endcase
   end
 
-always_comb begin : fsm_cache_date
+always_comb begin : fsm_ascon_set
     case (current_state)
         idle:
             begin
