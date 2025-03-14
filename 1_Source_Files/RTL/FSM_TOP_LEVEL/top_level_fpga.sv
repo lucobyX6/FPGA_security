@@ -25,20 +25,6 @@ module top_level_fpga
   assign resetb_s = ~reset_i;
   assign RTS_o    = RXRdy_s;  //from Nathan improve UART behavior (pin 1sur USB SERIAL)
 
-  //internal signals for UART part
-  logic [127:0] tag_s;
-  logic [1471:0] wave_to_send_s;
-  logic cipherRdy_s;
-  logic [127:0] key_s;
-  logic [127:0] nonce_s;
-  logic [63:0] ad_s;
-  logic [1471:0] wave_received_s;
-  logic start_ascon_s;
-  logic init_cpt_mux_s;
-  logic en_cpt_mux_s;
-  logic en_reg_ascon_s;
-  logic cipher_valid_s;
-
   //mux for injected data in ascon
   logic [63:0] data_s, cipher_s;
   logic [4:0] cpt_s;  //cpt 5 bits
@@ -93,18 +79,5 @@ ascon_fsm ascon_fsm_0 (
   .cipher_o(wave_to_send_s)
 
 );
-
-//register to store cipher result 8 bytes
-  ascon_reg u_ascon_reg (
-      .clock_i (clock_s),
-      //main clock
-      .resetb_i(resetb_s),
-      //asynchronous reset active low
-      .data_i  (cipher_s),
-      .en_i    (en_reg_ascon_s),
-      .init_i  (init_cpt_mux_s),
-      //wave register storing 8 bytes by the right hand side. (23*64bits)
-      .wave_o  (wave_to_send_s)   //wave_o_s
-  );
 
 endmodule : top_level_fpga
