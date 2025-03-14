@@ -140,10 +140,14 @@ module fsm_uart
       .nonce_o(Nonce_o)
   );
 
-//add register to store associated data 
-
-//add register to stare the plain ECG wave
-
+  ad_reg ad_reg_0(
+    .clock_i(clock_i),
+    .resetb_i(resetb_i),
+    .data_i(ad_reg_s),
+    .en_i(en_ad_s),
+    .init_i(init_ad_s),
+    .ad_o(Ad_o)
+  ); 
 
   cipher_reg cipher_reg_0 (
       .clock_i(clock_i),
@@ -154,8 +158,23 @@ module fsm_uart
       .data_o(cipher_reg_o_s)
   );
 
-//add the register that send the tag
+  wave_reg wave_reg_0 (
+    .clock_i(clock_i),
+    .resetb_i(resetb_i),
+    .data_i(wave_reg_s),
+    .en_i(en_wave_s),
+    .init_i(init_wave_s),
+    .wave_o(Wave_o)
+  );
 
+  tag_reg tag_reg_0 (
+    .clock_i(clock_i),
+    .resetb_i(resetb_i),
+    .tag_i(Tag_i),
+    .en_i(en_tag_s),
+    .init_i(init_tag_s),
+    .data_o(tag_reg_o_s)
+  );
 
 
   fsm_dcounter fsm_dcounter_0 (
