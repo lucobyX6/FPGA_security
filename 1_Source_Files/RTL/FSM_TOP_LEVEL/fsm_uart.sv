@@ -220,12 +220,12 @@ module fsm_uart
         case (RxData_i)
           8'h4B:   etat_f = init_key;  //K
           8'h6B:   etat_f = init_key;  //k
-          8'h44:   etat_f = init_ad; //D
-          8'h64:   etat_f = init_ad; //d
+          8'h53:   etat_f = init_ad; //S > Associated Data
+          8'h73:   etat_f = init_ad; //s
           8'h57:   etat_f = init_ecg; //W
           8'h77:   etat_f = init_ecg; //w
-          8'h43:   etat_f = init_cipher; //C
-          8'h63:   etat_f = init_cipher; //c
+          8'h52:   etat_f = init_cipher; //R > Cipher 
+          8'h72:   etat_f = init_cipher; //r
           8'h54:   etat_f = init_tag; //T
           8'h74:   etat_f = init_tag; //t
           8'h4E:   etat_f = init_nonce;  //N
@@ -912,7 +912,7 @@ module fsm_uart
         nonce_reg_s   = '0;
         init_nonce_s  = 1'b0;
         en_nonce_s    = 1'b0;
-        ad_reg_s      = Ad_o; //
+        ad_reg_s      = data_converted_s; //
         init_ad_s     = 1'b0;
         en_ad_s       = 1'b1; //
         wave_reg_s    = '0;
@@ -1085,9 +1085,9 @@ module fsm_uart
         ad_reg_s      = '0;
         init_ad_s     = 1'b0;
         en_ad_s       = 1'b0;
-        wave_reg_s    = '0;
+        wave_reg_s    = data_converted_s;
         init_wave_s   = 1'b0;
-        en_wave_s     = 1'b1;
+        en_wave_s     = 1'b1; //
         init_cipher_s = 1'b0;
         en_cipher_s   = 1'b0;
         init_tag_s    = 1'b0;
@@ -1113,7 +1113,7 @@ module fsm_uart
         ad_reg_s      = '0;
         init_ad_s     = 1'b0;
         en_ad_s       = 1'b0;
-        wave_reg_s    = Wave_o; //
+        wave_reg_s    = '0;
         init_wave_s   = 1'b0;
         en_wave_s     = 1'b0;
         init_cipher_s = 1'b0;
@@ -1640,5 +1640,14 @@ module fsm_uart
       end
     endcase
   end : comb_1
+  
+  
+ila_0 ILA0 (
+	.clk(clock_i),
+
+
+	.probe0(Key_o) 
+);  
+  
 endmodule : fsm_uart
 
