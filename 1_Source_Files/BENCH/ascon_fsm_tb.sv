@@ -32,6 +32,7 @@ ascon_fsm DUT(
     .cipher_o(cipher_w)
 );
 
+// Clock
 initial begin
 		clock_w = 1'b0;
 		forever #10 clock_w = ~clock_w;
