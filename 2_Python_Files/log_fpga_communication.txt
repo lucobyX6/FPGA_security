@@ -1,0 +1,30 @@
+[INFO] - - - 2025-03-24 13:23:16.989936 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[INFO] - - - 2025-03-24 13:23:38.679137 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 13:23:48.428320 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 13:23:51.558392 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[WARNING] Length of wave different of 32 characters
+[INFO] - - - 2025-03-24 13:24:19.119425 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[WARNING] Bad result during go transmit
+[INFO] Connection closed successfully
+ 
