@@ -1,0 +1,11 @@
+[INFO] - - - 2025-03-24 13:24:01.856310 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[WARNING] Bad result during key transmit

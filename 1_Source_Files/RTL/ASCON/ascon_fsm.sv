@@ -10,7 +10,11 @@ module ascon_fsm (
     input logic [63:0] da_i,
 
     output logic [127:0] tag_o,
-    output logic [1471:0] cipher_o
+    output logic [1471:0] cipher_o,
+    output logic end_ascon_o,
+    
+    output logic en_cipher_reg_o,
+    output logic en_tag_reg_o
 
 );
 
@@ -34,6 +38,8 @@ logic         end_cipher_w;
 logic         en_compteur_w;
 logic         init_compteur_w;
 logic [4:0] compteur_w;
+
+assign end_ascon_o = end_tag_w;
 
 ascon ASCON_0(
 
@@ -78,6 +84,7 @@ typedef enum {
     cipher_data_get,
     cipher_stop,
     cipher_end,
+    wait_ascon,
     end_ascon
   } state_fsm_cache;
 
@@ -153,9 +160,14 @@ typedef enum {
 
         cipher_end:
             begin
-                if (end_tag_w == 1'b1) next_state = end_ascon; // On réalise la finalisation
+                if (end_tag_w == 1'b1) next_state = wait_ascon; // On réalise la finalisation
                 else next_state = cipher_end;
             end
+        wait_ascon:
+            begin
+                next_state = end_ascon;
+            end
+            
         end_ascon:
             begin
                 next_state = idle;
@@ -177,7 +189,12 @@ always_comb begin : fsm_ascon_set
 
                 en_compteur_w = 1'b0;
                 init_compteur_w = 1'b0;
-                cipher_o_reg =0;
+                en_cipher_reg_o =1'b0;
+                en_tag_reg_o = 1'b0;
+                end_ascon_o = 1'b0;
+    
+                en_cipher_reg_o = 1'b0;
+                en_tag_reg_o = 1'b0;
             end
 
         init_ascon:
@@ -259,28 +276,28 @@ always_comb begin : fsm_ascon_set
                 associate_data_w = 1'b0;
                 finalisation_w = 1'b0;
                 case(compteur_w)
-                    0: data_w = plain_text_i[22*64+63:22*64];
-                    1: data_w = plain_text_i[21*64+63:21*64];
-                    2: data_w = plain_text_i[20*64+63:20*64];
-                    3: data_w = plain_text_i[19*64+63:19*64];
-                    4: data_w = plain_text_i[18*64+63:18*64];
-                    5: data_w = plain_text_i[17*64+63:17*64];
-                    6: data_w = plain_text_i[16*64+63:16*64];
-                    7: data_w = plain_text_i[15*64+63:15*64];
-                    8: data_w = plain_text_i[14*64+63:14*64];
-                    9: data_w = plain_text_i[13*64+63:13*64];
-                    10: data_w = plain_text_i[12*64+63:12*64];
-                    11: data_w = plain_text_i[11*64+63:11*64];
-                    12: data_w = plain_text_i[10*64+63:10*64];
-                    13: data_w = plain_text_i[9*64+63:9*64];
-                    14: data_w = plain_text_i[8*64+63:8*64];
-                    15: data_w = plain_text_i[7*64+63:7*64];
-                    16: data_w = plain_text_i[6*64+63:6*64];
-                    17: data_w = plain_text_i[5*64+63:5*64];
-                    18: data_w = plain_text_i[4*64+63:4*64];
-                    19: data_w = plain_text_i[3*64+63:3*64];
-                    20: data_w = plain_text_i[2*64+63:2*64];
-                    21: data_w = plain_text_i[64+63:64];
+                    0: data_w = plain_text_i[1471:1408];
+                    1: data_w = plain_text_i[1407:1344];
+                    2: data_w = plain_text_i[1343:1280];
+                    3: data_w = plain_text_i[1279:1216];
+                    4: data_w = plain_text_i[1215:1152];
+                    5: data_w = plain_text_i[1151:1088];
+                    6: data_w = plain_text_i[1087:1024];
+                    7: data_w = plain_text_i[1023:960];
+                    8: data_w = plain_text_i[959:896];
+                    9: data_w = plain_text_i[895:832];
+                    10: data_w = plain_text_i[831:768];
+                    11: data_w = plain_text_i[767:704];
+                    12: data_w = plain_text_i[703:640];
+                    13: data_w = plain_text_i[639:576];
+                    14: data_w = plain_text_i[575:512];
+                    15: data_w = plain_text_i[511:448];
+                    16: data_w = plain_text_i[447:384];
+                    17: data_w = plain_text_i[383:320];
+                    18: data_w = plain_text_i[319:256];
+                    19: data_w = plain_text_i[255:192];
+                    20: data_w = plain_text_i[191:128];
+                    21: data_w = plain_text_i[127:64];
                     default: data_w = 0;
                 endcase     
                     
@@ -321,7 +338,7 @@ always_comb begin : fsm_ascon_set
                     19: cipher_o_reg[255:192] = cipher_w;
                     20: cipher_o_reg[191:128] = cipher_w;
                     21: cipher_o_reg[127:64] = cipher_w;
-                    default: cipher_o_reg[1471:1408] = 0;
+                    default: cipher_o_reg[63:0] = 0;
                 endcase  
 
                 en_compteur_w = 1'b0;
@@ -351,8 +368,9 @@ always_comb begin : fsm_ascon_set
                 en_compteur_w = 1'b0;
                 init_compteur_w = 1'b0;
                 cipher_o_reg[63:0] = cipher_w;
+                en_cipher_reg_o = 1'b1;
             end
-        end_ascon:
+        wait_ascon:
             begin
                 init_w = 1'b0;
                 associate_data_w = 1'b0;
@@ -362,8 +380,20 @@ always_comb begin : fsm_ascon_set
 
                 en_compteur_w = 1'b0;
                 init_compteur_w = 1'b0;
+                en_tag_reg_o = 1'b1;
             end
+            
+        end_ascon: 
+        begin
+            init_w = 1'b0;
+            associate_data_w = 1'b0;
+            finalisation_w = 1'b0;
+            data_w = 0;
+            data_valid_w = 1'b0;
 
+            en_compteur_w = 1'b0;
+            init_compteur_w = 1'b0;
+        end
 
         default: 
             begin
