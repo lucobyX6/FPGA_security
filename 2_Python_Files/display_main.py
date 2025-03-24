@@ -1,6 +1,7 @@
 import tkinter as tk
 import serial
 import serial.tools.list_ports
+import numpy as np
 import fpga_communication as fp
 
 def avaible_ports_display():
@@ -35,14 +36,15 @@ def Select_nonce():
 
 def wave_plus_one():
     wave = fpga.fifo_ecg_plus()
-    fpga.start_ascon()
+    """fpga.start_ascon()
     
     cipher_display["text"] = f"Cipher : {fpga.read_cipher()}"
-    tag_display["text"] = f"Tag : {fpga.read_tag()}"
+    tag_display["text"] = f"Tag : {fpga.read_tag()}"""
 
     index = fpga.current_index()
     i_display["text"] = f"{index}"
-    
+    wave_list = np.array([wave[i:i+2] for i in range(0, len(wave), 2)])
+    fpga.display_ecg(wave_list)
 
 def wave_sub_one():
     wave = fpga.fifo_ecg_sub()
@@ -53,6 +55,8 @@ def wave_sub_one():
 
     index = fpga.current_index()
     i_display["text"] = f"{index}"
+    wave_list = np.array([wave[i:i+2] for i in range(0, len(wave), 2)])
+    fpga.display_ecg(wave_list)
 
 
 

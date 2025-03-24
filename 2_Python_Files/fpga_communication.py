@@ -6,6 +6,8 @@ import pandas as pd
 import numpy as np
 import ascon_pcsn as ap
 
+import matplotlib.pyplot as plt
+
 class fpga_communication:
         def __init__(self, baud_rate):
             self.baud_rate = baud_rate
@@ -267,6 +269,16 @@ class fpga_communication:
         def decrypt_cipher(self, cipher, tag):
             plain_text = ap.ascon_decrypt(key = self.key, nonce = self.nonce, associateddata = self.da, ciphertext = self.cipher+self.tag, variant="Ascon-128")
             return plain_text
+        
+        def display_ecg(self, list):
+            
+            wave_int = [int(hexa, 16) for hexa in list]
+            plt.figure()
+            plt.plot([i for i in range(len(wave_int))], wave_int)
+            plt.grid()
+            plt.xlabel("Time(s)")
+            plt.ylabel("Value (0-255)")
+            plt.show()
         
         
         def close_instrument(self):
