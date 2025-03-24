@@ -21,7 +21,7 @@ if __name__ == '__main__' and ports:
 
     print(fpga.read_tag())
   
-    c = fpga.read_cipher()
+    #print(fpga.read_cipher())
 
-    #fpga.decrypt_cipher(c, t)
+    #fpga.decrypt_cipher(c, t)v
     fpga.close_instrument()

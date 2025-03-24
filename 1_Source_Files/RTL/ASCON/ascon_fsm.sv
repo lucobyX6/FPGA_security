@@ -160,12 +160,12 @@ typedef enum {
 
         cipher_end:
             begin
-                if (end_tag_w == 1'b1) next_state = end_ascon; // On réalise la finalisation
+                if (end_tag_w == 1'b1) next_state = wait_ascon; // On réalise la finalisation
                 else next_state = cipher_end;
             end
         wait_ascon:
             begin
-                next_state = wait_ascon;
+                next_state = end_ascon;
             end
             
         end_ascon:

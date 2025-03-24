@@ -245,7 +245,7 @@ class fpga_communication:
             c_hex = self.hex_convertor("43")
             send = self.ser.write(c_hex)
 
-            ret = self.ser.read(187)
+            ret = self.ser.read(184)
             self.cipher = ret[:-3].hex()
 
             return ret[:-3].hex()
@@ -261,7 +261,7 @@ class fpga_communication:
             t_hex = self.hex_convertor("54")
             send = self.ser.write(t_hex)
 
-            ret = self.ser.read(19)
+            ret = self.ser.read(17)
             self.tag = ret[:-3].hex()
             
             return ret[:-3].hex()

@@ -1377,9 +1377,9 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1; //
-        init_c16_s    = 1'b0;
+        init_c16_s    = 1'b1; //
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b1; //
+        init_c32_s    = 1'b0;
         init_c184_s   = 1'b0;
         init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
