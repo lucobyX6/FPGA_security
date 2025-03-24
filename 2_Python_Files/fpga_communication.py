@@ -278,6 +278,8 @@ class fpga_communication:
             plt.grid()
             plt.xlabel("Time(s)")
             plt.ylabel("Value (0-255)")
+            plt.scatter([wave_int.index(max(wave_int))], [max(wave_int)], color='red')
+            plt.text(0, 0, f"X = {wave_int.index(max(wave_int))} | Y = {max(wave_int)} ", fontsize=12, bbox=dict(boxstyle="round",ec=(0, 0, 0),fc=(1., 0.8, 0.8)))
             plt.show()
         
         

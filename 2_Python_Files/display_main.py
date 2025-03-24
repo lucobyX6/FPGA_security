@@ -48,10 +48,10 @@ def wave_plus_one():
 
 def wave_sub_one():
     wave = fpga.fifo_ecg_sub()
-    fpga.start_ascon()
+    """fpga.start_ascon()
     
     cipher_display["text"] = f"Cipher : {fpga.read_cipher()}"
-    tag_display["text"] = f"Tag : {fpga.read_tag()}"
+    tag_display["text"] = f"Tag : {fpga.read_tag()}"""
 
     index = fpga.current_index()
     i_display["text"] = f"{index}"
