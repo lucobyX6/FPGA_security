@@ -238,3 +238,761 @@
 [INFO] Go successfully sent to FPGA
 [INFO] Connection closed successfully
  
+[INFO] - - - 2025-03-24 16:56:16.156376 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:00:28.482304 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:00:35.865631 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:02:41.410950 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:10:17.423383 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:10:34.346852 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:11:43.045864 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[WARNING] Bad result during go transmit
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:12:03.987410 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[WARNING] Bad result during key transmit
+[WARNING] Bad result during go transmit
+[INFO] - - - 2025-03-24 17:17:29.857614 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[WARNING] Bad result during go transmit
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:18:07.029286 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:20:08.526708 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:25:06.178993 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:35:26.626906 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:39:01.228609 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:50:40.233660 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Length of wave different of 362 characters
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:50:53.419465 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave length is correct
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:52:53.682470 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave length is correct
+[WARNING] Bad result during wave transmit
+[WARNING] Bad result during go transmit
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:53:04.164640 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[WARNING] Bad result during key transmit
+[DEBUG] Sending wave to FPGA
+[INFO] Wave length is correct
+[WARNING] Bad result during wave transmit
+[WARNING] Bad result during go transmit
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:56:15.070131 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave length is correct
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:56:21.743105 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave length is correct
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 17:56:27.276327 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave length is correct
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:01:28.472327 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave length is correct
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:06:09.984226 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave length is correct
+[WARNING] Bad result during wave transmit
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:19:03.030462 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave length is correct
+[WARNING] Bad result during wave transmit
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:19:11.459751 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave length is correct
+[WARNING] Bad result during wave transmit
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:19:42.804454 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Bad result during wave transmit
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:20:00.598991 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Bad result during wave transmit
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:20:39.404086 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:21:04.976044 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:21:25.906352 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:21:31.028631 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:22:06.133439 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:22:20.032813 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Bad result during wave transmit
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:22:27.419943 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Bad result during wave transmit
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:22:33.257292 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Bad result during wave transmit
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:22:44.856509 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[WARNING] Bad result during wave transmit
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:24:33.297560 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:24:38.126631 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:31:24.479653 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:31:28.601898 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:38:35.576552 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:47:19.362118 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:47:56.884881 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:48:42.028133 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:48:51.013362 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:50:39.047317 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 
+[INFO] - - - 2025-03-24 18:52:17.479926 - - - 
+[INFO] FPGA initialized on port COM7, baud rate: 115200
+[DEBUG] Sending key to FPGA
+[INFO] key length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending none to FPGA
+[INFO] none length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending associated data to FPGA
+[INFO] Da length is correct
+[INFO] Key successfully sent to FPGA
+[DEBUG] Sending wave to FPGA
+[INFO] Wave successfully sent to FPGA
+[INFO] Go successfully sent to FPGA
+[INFO] Connection closed successfully
+ 

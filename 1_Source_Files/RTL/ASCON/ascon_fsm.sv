@@ -15,7 +15,6 @@ module ascon_fsm (
     
     output logic en_cipher_reg_o,
     output logic en_tag_reg_o
-
 );
 
 reg [1471:0] cipher_o_reg;
@@ -83,6 +82,7 @@ typedef enum {
     plain_text_set,
     cipher_data_get,
     cipher_stop,
+    plain_text_end,
     cipher_end,
     wait_ascon,
     end_ascon
@@ -134,35 +134,42 @@ typedef enum {
             begin
                 next_state = cipher_init;
             end
-
+        
         cipher_init:
             begin
                 next_state = plain_text_set;
             end
-
+            
         plain_text_set:
             begin
                 if (cipher_valid_w == 1'b1) next_state = cipher_data_get;
                 else next_state = plain_text_set;
             end
-
+            
         cipher_data_get:
             begin
                 if (end_cipher_w == 1'b1) next_state = cipher_stop;
                 else next_state = cipher_data_get;
             end
-
+            
         cipher_stop:
             begin
-                if (compteur_w >= 5'h16) next_state = cipher_end; // On s'arrête à 22, car le dernier à lieu avec la finalisation
+                if (compteur_w >= 5'h15) next_state = plain_text_end; // On s'arrête à 22, car le dernier à lieu avec la finalisation
                 else next_state = plain_text_set;
             end
-
+            
+        plain_text_end:
+            begin
+                if (cipher_valid_w == 1'b1) next_state = cipher_end; // On réalise la finalisation
+                else next_state = plain_text_end;
+            end
+        
         cipher_end:
             begin
                 if (end_tag_w == 1'b1) next_state = wait_ascon; // On réalise la finalisation
                 else next_state = cipher_end;
             end
+            
         wait_ascon:
             begin
                 next_state = end_ascon;
@@ -191,7 +198,6 @@ always_comb begin : fsm_ascon_set
                 init_compteur_w = 1'b0;
                 en_cipher_reg_o =1'b0;
                 en_tag_reg_o = 1'b0;
-                end_ascon_o = 1'b0;
     
                 en_cipher_reg_o = 1'b0;
                 en_tag_reg_o = 1'b0;
@@ -269,7 +275,7 @@ always_comb begin : fsm_ascon_set
                 en_compteur_w = 1'b1;
                 init_compteur_w = 1'b1;
             end
-
+       
         plain_text_set:
             begin
                 init_w = 1'b0;
@@ -306,13 +312,12 @@ always_comb begin : fsm_ascon_set
                 en_compteur_w = 1'b0;
                 init_compteur_w = 1'b0;
             end
-
+            
         cipher_data_get:
             begin
                 init_w = 1'b0;
                 associate_data_w = 1'b0;
                 finalisation_w = 1'b0;
-                data_w = 0;
                 data_valid_w = 1'b0;
                 
                 case (compteur_w)
@@ -338,13 +343,14 @@ always_comb begin : fsm_ascon_set
                     19: cipher_o_reg[255:192] = cipher_w;
                     20: cipher_o_reg[191:128] = cipher_w;
                     21: cipher_o_reg[127:64] = cipher_w;
-                    default: cipher_o_reg[63:0] = 0;
                 endcase  
 
                 en_compteur_w = 1'b0;
                 init_compteur_w = 1'b0;
             end
-
+            
+            
+            
         cipher_stop:
             begin
                 init_w = 1'b0;
@@ -356,14 +362,27 @@ always_comb begin : fsm_ascon_set
                 en_compteur_w = 1'b1;
                 init_compteur_w = 1'b0;
             end
-
-        cipher_end:
+            
+        plain_text_end:
             begin
                 init_w = 1'b0;
                 associate_data_w = 1'b0;
                 finalisation_w = 1'b1;
                 data_w = plain_text_i[63:0];
                 data_valid_w = 1'b1;
+
+                en_compteur_w = 1'b0;
+                init_compteur_w = 1'b0;
+                en_cipher_reg_o = 1'b0;
+            end
+
+
+        cipher_end:
+            begin
+                init_w = 1'b0;
+                associate_data_w = 1'b0;
+                finalisation_w = 1'b0;
+                data_valid_w = 1'b0;
 
                 en_compteur_w = 1'b0;
                 init_compteur_w = 1'b0;
@@ -408,8 +427,6 @@ always_comb begin : fsm_ascon_set
             end
     endcase
 end
-
-
 
 
 endmodule : ascon_fsm

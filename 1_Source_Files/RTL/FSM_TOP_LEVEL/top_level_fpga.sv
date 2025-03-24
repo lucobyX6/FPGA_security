@@ -22,10 +22,8 @@ module top_level_fpga
   logic clock_s;
   logic resetb_s;
 
-  // Baud const
   assign Baud_w   = 3'b000;
   assign Baud_o   = Baud_w;
-
   assign resetb_s = ~reset_i;
   assign RTS_o    = RXRdy_s;  //from Nathan improve UART behavior (pin 1sur USB SERIAL)
 
@@ -42,10 +40,18 @@ module top_level_fpga
   logic en_cpt_mux_s;
   logic en_reg_ascon_s;
   logic cipher_valid_s;
+  logic end_ascon_s;
 
   //mux for injected data in ascon
   logic [63:0] data_s, cipher_s;
   logic [4:0] cpt_s;  //cpt 5 bits
+  //logic [0:22][63:0] wave_o_s;  //1472+64 packed
+  
+  //reg cipher + tag
+  logic [1471:0] ascon_to_reg_cipher_w;
+  logic [127:0] ascon_to_reg_tag_w;
+  logic en_cipher_reg_w;
+  logic en_tag_reg_w;
 
   // Clock convertor 125MHz -> 50MHz
    clk_wiz_0 CLK0
@@ -79,7 +85,7 @@ module top_level_fpga
       .RxData_i(Dout_s),
       .Tag_i(tag_s),
       .Cipher_i(wave_to_send_s),
-      .CipherRdy_i(end_tag_s),
+      .CipherRdy_i(end_ascon_s),
       .TxByte_o(rdata_s),
       .Key_o(key_s),
       .Nonce_o(nonce_s),
@@ -98,9 +104,28 @@ ascon_fsm ascon_fsm_0 (
   .nonce_i(nonce_s),
   .da_i(ad_s),
   .tag_o(tag_s),
-  .cipher_o(wave_to_send_s)
+  .cipher_o(ascon_to_reg_cipher_w),
+  .end_ascon_o(end_ascon_s),
+  .en_cipher_reg_o(en_cipher_reg_w),
+  .en_tag_reg_o(en_tag_reg_w)
 
 );
 
+always_ff @(posedge clock_s, negedge resetb_s) begin : cipher_reg
+    if (resetb_s == 1'b0) begin
+      wave_to_send_s =0;
+    end 
+    else 
+    begin
+        if(en_cipher_reg_w == 1'b1) 
+        begin   
+            wave_to_send_s=ascon_to_reg_cipher_w;
+        end
+        else
+        begin
+            wave_to_send_s=wave_to_send_s;
+        end
+    end
+  end : cipher_reg
 
 endmodule : top_level_fpga

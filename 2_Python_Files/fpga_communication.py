@@ -195,12 +195,12 @@ class fpga_communication:
             """
             self.log.write(f"[DEBUG] Sending wave to FPGA\n")
 
-            message_length = len(wave)
+            """message_length = len(wave)
             if (message_length == 362):
                 self.log.write(f"[INFO] Wave length is correct\n")
             else:
                 self.log.write(f"[WARNING] Length of wave different of 362 characters\n")
-                return False
+                return False"""
             
             self.wave = self.hex_convertor(wave + "800000")
             wave = "57" + wave + "800000"

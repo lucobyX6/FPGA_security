@@ -89,14 +89,14 @@ module fsm_uart
     flush_ad,
               //tag
     init_tag,
-    send_tag_S,
     start_tag,
     send_tag,
+    disable_tag,
               //cipher
     init_cipher,
-    send_cipher_S,
     start_cipher,
     send_cipher,
+    disable_cipher,
 
               //ecg 
     init_ecg,
@@ -220,12 +220,12 @@ module fsm_uart
         case (RxData_i)
           8'h4B:   etat_f = init_key;  //K
           8'h6B:   etat_f = init_key;  //k
-          8'h53:   etat_f = init_ad; //S > Associated Data
-          8'h73:   etat_f = init_ad; //s
+          8'h41:   etat_f = init_ad; //A > Associated Data
+          8'h61:   etat_f = init_ad; //a
           8'h57:   etat_f = init_ecg; //W
           8'h77:   etat_f = init_ecg; //w
-          8'h52:   etat_f = init_cipher; //R > Cipher 
-          8'h72:   etat_f = init_cipher; //r
+          8'h43:   etat_f = init_cipher; //C > Cipher 
+          8'h63:   etat_f = init_cipher; //c
           8'h54:   etat_f = init_tag; //T
           8'h74:   etat_f = init_tag; //t
           8'h4E:   etat_f = init_nonce;  //N
@@ -337,35 +337,49 @@ module fsm_uart
       end
 
       //read cipher
-      init_cipher: etat_f = send_cipher_S;
-      send_cipher_S:
-      if (TxBusy_i == 1'b0) begin
-        etat_f = start_cipher;
-      end else begin
-        etat_f = send_cipher_S;
-      end
+      init_cipher: etat_f = start_cipher;
       start_cipher: etat_f = send_cipher;
-      send_cipher:
-      if (TxBusy_i == 1'b0) begin
-        etat_f = startlf;
-      end else begin
-        etat_f = send_cipher;
+      send_cipher: etat_f = disable_cipher;
+      disable_cipher:
+      begin
+        if (TxBusy_i == 1'b0) 
+        begin
+          if(cpt_s == 9'h1)
+          begin
+              etat_f = startlf;
+          end
+          else
+          begin
+              etat_f = start_cipher;
+          end
+        end
+        else
+        begin
+          etat_f = disable_cipher;
+        end
       end
 
       //read tag
-      init_tag: etat_f = send_tag_S;
-      send_tag_S:
-      if (TxBusy_i == 1'b0) begin
-        etat_f = start_tag;
-      end else begin
-        etat_f = send_tag_S;
-      end
+      init_tag: etat_f = start_tag;
       start_tag: etat_f = send_tag;
-      send_tag:
-      if (TxBusy_i == 1'b0) begin
-        etat_f = startlf;
-      end else begin
-        etat_f = send_tag;
+      send_tag: etat_f = disable_tag;
+      disable_tag:
+      begin
+        if (TxBusy_i == 1'b0) 
+        begin
+          if(cpt_s == 9'h1)
+          begin
+              etat_f = startlf;
+          end
+          else
+          begin
+              etat_f = start_tag;
+          end
+        end
+        else
+        begin
+          etat_f = disable_tag;
+        end
       end
 
       //Respond to commands
@@ -1012,8 +1026,8 @@ module fsm_uart
         init_c16_s    = 1'b0;
         init_c17_s    = 1'b0;
         init_c32_s    = 1'b0;
-        init_c184_s   = 1'b0;
-        init_c366_s   = 1'b1; //
+        init_c184_s   = 1'b1; //
+        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       idle_ecg0: begin
@@ -1188,7 +1202,7 @@ module fsm_uart
       end
       wait_end_ascon: begin
         TxByte_o      = '0;
-        Start_ascon_o = 1'b0;
+        Start_ascon_o = 1'b1;
         Load_o        = 1'b0;
         key_reg_s     = '0;
         init_key_s    = 1'b0;
@@ -1216,34 +1230,6 @@ module fsm_uart
       end
       //send cipher
       init_cipher: begin
-        TxByte_o      = 8'h53; //
-        Start_ascon_o = 1'b0;
-        Load_o        = 1'b1; //
-        key_reg_s     = '0;
-        init_key_s    = 1'b0;
-        en_key_s      = 1'b0;
-        nonce_reg_s   = '0;
-        init_nonce_s  = 1'b0;
-        en_nonce_s    = 1'b0;
-        ad_reg_s      = '0;
-        init_ad_s     = 1'b0;
-        en_ad_s       = 1'b0;
-        wave_reg_s    = '0;
-        init_wave_s   = 1'b0;
-        en_wave_s     = 1'b0;
-        init_cipher_s = 1'b0;
-        en_cipher_s   = 1'b0;
-        init_tag_s    = 1'b0;
-        en_tag_s      = 1'b0;
-        en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
-        init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
-        init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
-        en_trans_s    = 1'b0;
-      end
-      send_cipher_S: begin
         TxByte_o      = '0;
         Start_ascon_o = 1'b0;
         Load_o        = 1'b0;
@@ -1259,16 +1245,16 @@ module fsm_uart
         wave_reg_s    = '0;
         init_wave_s   = 1'b0;
         en_wave_s     = 1'b0;
-        init_cipher_s = 1'b0;
-        en_cipher_s   = 1'b0;
+        init_cipher_s = 1'b1; //
+        en_cipher_s   = 1'b1; //
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1; //
         init_c16_s    = 1'b0;
         init_c17_s    = 1'b0;
         init_c32_s    = 1'b0;
-        init_c184_s   = 1'b0;
-        init_c366_s   = 1'b1; //
+        init_c184_s   = 1'b1; //
+        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       start_cipher: begin
@@ -1316,9 +1302,9 @@ module fsm_uart
         init_wave_s   = 1'b0;
         en_wave_s     = 1'b0;
         init_cipher_s = 1'b0;
-        en_cipher_s   = 1'b0;
+        en_cipher_s   = 1'b1; //
         init_tag_s    = 1'b0;
-        en_tag_s      = 1'b1; //
+        en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1; //
         init_c16_s    = 1'b0;
         init_c17_s    = 1'b0;
@@ -1327,11 +1313,10 @@ module fsm_uart
         init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
-      //send tag
-      init_tag: begin
-        TxByte_o      = 8'h53; //
+      disable_cipher: begin
+        TxByte_o      = '0;
         Start_ascon_o = 1'b0;
-        Load_o        = 1'b1; //
+        Load_o        = 1'b0;
         key_reg_s     = '0;
         init_key_s    = 1'b0;
         en_key_s      = 1'b0;
@@ -1356,8 +1341,9 @@ module fsm_uart
         init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
-      send_tag_S: begin
-        TxByte_o      = '0;
+      //send tag
+      init_tag: begin
+        TxByte_o      = 0;
         Start_ascon_o = 1'b0;
         Load_o        = 1'b0;
         key_reg_s     = '0;
@@ -1374,11 +1360,11 @@ module fsm_uart
         en_wave_s     = 1'b0;
         init_cipher_s = 1'b0;
         en_cipher_s   = 1'b0;
-        init_tag_s    = 1'b0;
-        en_tag_s      = 1'b0;
-        en_cpt_s      = 1'b1; //
-        init_c16_s    = 1'b1; //
-        init_c17_s    = 1'b0;
+        init_tag_s    = 1'b1; // 
+        en_tag_s      = 1'b1; // 
+        en_cpt_s      = 1'b1; // 
+        init_c16_s    = 1'b0;
+        init_c17_s    = 1'b1; // 
         init_c32_s    = 1'b0;
         init_c184_s   = 1'b0;
         init_c366_s   = 1'b0;
@@ -1439,6 +1425,35 @@ module fsm_uart
         init_c184_s   = 1'b0;
         init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
+      end
+      disable_tag: begin
+        TxByte_o      = '0;
+        Start_ascon_o = 1'b0;
+        Load_o        = 1'b0;
+        key_reg_s     = '0;
+        init_key_s    = 1'b0;
+        en_key_s      = 1'b0;
+        nonce_reg_s   = '0;
+        init_nonce_s  = 1'b0;
+        en_nonce_s    = 1'b0;
+        ad_reg_s      = '0;
+        init_ad_s     = 1'b0;
+        en_ad_s       = 1'b0;
+        wave_reg_s    = '0;
+        init_wave_s   = 1'b0;
+        en_wave_s     = 1'b0;
+        init_cipher_s = 1'b0;
+        en_cipher_s   = 1'b0;
+        init_tag_s    = 1'b0;
+        en_tag_s      = 1'b0;
+        en_cpt_s      = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c17_s    = 1'b0;
+        init_c32_s    = 1'b0;
+        init_c184_s   = 1'b0;
+        init_c366_s   = 1'b0;
+        en_trans_s    = 1'b0;        
+
       end
 
       //respond to commands
@@ -1640,14 +1655,15 @@ module fsm_uart
       end
     endcase
   end : comb_1
-  
-  
-ila_0 ILA0 (
-	.clk(clock_i),
+
+ila_0 your_instance_name (
+	.clk(clock_i), // input wire clk
 
 
-	.probe0(Key_o) 
-);  
-  
+	.probe0(Key_o), // input wire [127:0]  probe0  
+	.probe1(Nonce_o), // input wire [127:0]  probe1 
+	.probe2(Ad_o), // input wire [63:0]  probe2 
+	.probe3(Wave_o) // input wire [1471:0]  probe3
+);
+
 endmodule : fsm_uart
-
