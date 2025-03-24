@@ -43,6 +43,8 @@ initial begin
     #40
     assign reset_w = 1'b1;
     assign start_w = 1'b1;
+    #40
+    assign start_w = 1'b0;
     end
 
 endmodule

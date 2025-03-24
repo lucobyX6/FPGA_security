@@ -7,13 +7,15 @@ import numpy as np
 import ascon_pcsn as ap
 
 class fpga_communication:
-        def __init__(self, port, baud_rate):
-            self.port = port
+        def __init__(self, baud_rate):
             self.baud_rate = baud_rate
             self.da = None 
             self.key = None
             self.nonce = None
             self.wave = None
+
+        def get_port(self, port):
+            self.port = port
         
         def open_instrument(self):
             """ 
@@ -41,11 +43,11 @@ class fpga_communication:
             Open csv and set index to 0
             
             """
-            data = pd.read_csv(name)
+            data = pd.read_csv(name, header=None)
             self.data_array = np.array(data)
             self.i=0
 
-        def fifo_ecg(self):
+        def fifo_ecg_plus(self):
             """ 
             Inputs : None
 
@@ -58,7 +60,24 @@ class fpga_communication:
             self.i +=1
 
             return current_ecg
-    
+        
+        def fifo_ecg_sub(self):
+            """ 
+            Inputs : None
+
+            Outputs : ecg line (str)
+            
+            Return the previous line and index --
+            
+            """
+            current_ecg = self.data_array[self.i][0]
+            self.i -=1
+
+            return current_ecg
+        
+        def current_index(self):
+            return self.i
+        
         def hex_convertor(self, txt : str):
             """ 
             Inputs : txt (str)
@@ -91,7 +110,7 @@ class fpga_communication:
                 return False
             
             self.key = self.hex_convertor(key)
-            key = "4C" + key
+            key = "4B" + key
             key_hex = self.hex_convertor(key)
             send = self.ser.write(key_hex)
 
@@ -121,7 +140,7 @@ class fpga_communication:
                 return False
             self.da = da + "8000"
             self.da = self.hex_convertor(self.da)
-            da = "42" + da + "8000"
+            da = "41" + da + "8000"
             da_hex = self.hex_convertor(da)
             send = self.ser.write(da_hex)
 
@@ -151,7 +170,7 @@ class fpga_communication:
                 return False
             
             self.nonce = self.hex_convertor(nonce)
-            nonce = "4F" + nonce
+            nonce = "4E" + nonce
             nonce_hex = self.hex_convertor(nonce)
             send = self.ser.write(nonce_hex)
 
@@ -182,7 +201,7 @@ class fpga_communication:
                 return False
             
             self.wave = self.hex_convertor(wave + "800000")
-            wave = "58" + wave + "800000"
+            wave = "57" + wave + "800000"
             wave_hex = self.hex_convertor(wave)
             send = self.ser.write(wave_hex)
 
@@ -202,7 +221,7 @@ class fpga_communication:
             
             Send the wave.
             """
-            go_hex = self.hex_convertor("48")
+            go_hex = self.hex_convertor("47")
             send = self.ser.write(go_hex)
 
             ret = self.ser.read(3)
@@ -221,10 +240,11 @@ class fpga_communication:
             
             Get the cipher.
             """
-            c_hex = self.hex_convertor("44")
+            c_hex = self.hex_convertor("43")
             send = self.ser.write(c_hex)
 
             ret = self.ser.read(187)
+            self.cipher = ret[:-3].hex()
 
             return ret[:-3].hex()
 
@@ -236,15 +256,16 @@ class fpga_communication:
             
             Get the tag.
             """
-            t_hex = self.hex_convertor("55")
+            t_hex = self.hex_convertor("54")
             send = self.ser.write(t_hex)
 
             ret = self.ser.read(19)
+            self.tag = ret[:-3].hex()
             
             return ret[:-3].hex()
         
         def decrypt_cipher(self, cipher, tag):
-            plain_text = ap.ascon_decrypt(key = self.key, nonce = self.nonce, associateddata = self.da, ciphertext = cipher+tag, variant="Ascon-128")
+            plain_text = ap.ascon_decrypt(key = self.key, nonce = self.nonce, associateddata = self.da, ciphertext = self.cipher+self.tag, variant="Ascon-128")
             return plain_text
         
         
