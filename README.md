@@ -17,3 +17,16 @@ _Abstract : FPGA project on Xilinx Pynq Z2. The goal is to encrypt a communicati
 
 
 https://ascon.isec.tugraz.at/specification.html
+
+
+Prérequis 
+
+Logiciel nécessaire
+
+
+Comment exécuter 
+
+
+Affichage 
+
+Référence

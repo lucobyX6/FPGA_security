@@ -54,11 +54,11 @@ module fsm_uart
   //internal signals for fsm_dcounter
   logic [8:0] cpt_s;
   logic en_cpt_s;
-  logic init_c16_s;
+  logic init_c8_s;
   logic init_c17_s;
-  logic init_c32_s;
+  logic init_c16_s;
+  logic init_c185_s;
   logic init_c184_s;
-  logic init_c366_s;
 
   //internal signals for trans_receive
   logic [7:0] data_converted_s;
@@ -181,11 +181,11 @@ module fsm_uart
       .clock_i(clock_i),
       .resetb_i(resetb_i),
       .en_i(en_cpt_s),
-      .init_c16_i(init_c16_s),
+      .init_c8_i(init_c8_s),
       .init_c17_i(init_c17_s),
-      .init_c32_i(init_c32_s),
+      .init_c16_i(init_c16_s),
+      .init_c185_i(init_c185_s),
       .init_c184_i(init_c184_s),
-      .init_c366_i(init_c366_s),
       .cpt_o(cpt_s)
   );
 
@@ -346,7 +346,7 @@ module fsm_uart
         begin
           if(cpt_s == 9'h1)
           begin
-              etat_f = startlf;
+              etat_f = starto;
           end
           else
           begin
@@ -369,7 +369,7 @@ module fsm_uart
         begin
           if(cpt_s == 9'h1)
           begin
-              etat_f = startlf;
+              etat_f = starto;
           end
           else
           begin
@@ -431,11 +431,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       idle_cmd: begin
@@ -459,11 +459,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       get_cmd: begin
@@ -487,11 +487,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       //write key
@@ -516,11 +516,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1;  //
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b1;  //
+        init_c16_s    = 1'b1; //
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       idle_key0: begin
@@ -544,11 +544,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b1;  //
       end
       idle_key1: begin
@@ -572,11 +572,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       get_key0: begin
@@ -600,11 +600,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       get_key1: begin
@@ -628,11 +628,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1;  //
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       flush_key: begin
@@ -656,11 +656,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       init_nonce: begin
@@ -684,11 +684,12 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1;  //
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b1;  //
+        init_c16_s    = 1'b1; //
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
+
         en_trans_s    = 1'b0;
       end
       idle_nonce0: begin
@@ -712,11 +713,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
-        init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
+        init_c184_s   = 1'b0;;
         en_trans_s    = 1'b1;  //
       end
       idle_nonce1: begin
@@ -740,11 +741,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       get_nonce0: begin
@@ -768,11 +769,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       get_nonce1: begin
@@ -796,11 +797,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1;  //
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       flush_nonce: begin
@@ -824,11 +825,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       //write DA
@@ -853,11 +854,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1;  //
-        init_c16_s    = 1'b1;  //
+        init_c8_s    = 1'b1; //
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       idle_ad0: begin
@@ -881,11 +882,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b1;  //
       end
       idle_ad1: begin
@@ -909,11 +910,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       get_ad0: begin
@@ -937,11 +938,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       get_ad1: begin
@@ -965,11 +966,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1;  //
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       flush_ad: begin
@@ -993,11 +994,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
 
@@ -1023,12 +1024,14 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1;  //
-        init_c16_s    = 1'b0;
-        init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
-        init_c184_s   = 1'b1; //
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
+
+        init_c8_s    = 1'b0;
+        init_c17_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
+        init_c184_s   = 1'b1; //
+
       end
       idle_ecg0: begin
         TxByte_o      = '0;
@@ -1051,11 +1054,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b1;  //
       end
       idle_ecg1: begin
@@ -1079,11 +1082,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       get_ecg0: begin
@@ -1107,11 +1110,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       get_ecg1: begin
@@ -1135,11 +1138,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1;  //
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       flush_ecg: begin
@@ -1163,11 +1166,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
 
@@ -1193,11 +1196,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       wait_end_ascon: begin
@@ -1221,11 +1224,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       //send cipher
@@ -1250,11 +1253,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1; //
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
-        init_c184_s   = 1'b1; //
-        init_c366_s   = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b1; //
+        init_c184_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       start_cipher: begin
@@ -1278,11 +1281,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       send_cipher: begin
@@ -1306,11 +1309,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b1; //
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       disable_cipher: begin
@@ -1334,11 +1337,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       //send tag
@@ -1363,11 +1366,11 @@ module fsm_uart
         init_tag_s    = 1'b1; // 
         en_tag_s      = 1'b1; // 
         en_cpt_s      = 1'b1; // 
+        init_c8_s    = 1'b0;
+        init_c17_s    = 1'b1; //
         init_c16_s    = 1'b0;
-        init_c17_s    = 1'b1; // 
-        init_c32_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       start_tag: begin
@@ -1391,11 +1394,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       send_tag: begin
@@ -1419,11 +1422,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b1; //
         en_cpt_s      = 1'b1; //
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       disable_tag: begin
@@ -1447,11 +1450,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;        
 
       end
@@ -1478,11 +1481,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       sendo: begin
@@ -1506,11 +1509,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       startk: begin
@@ -1534,11 +1537,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       sendk: begin
@@ -1562,11 +1565,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       startlf: begin
@@ -1590,11 +1593,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       sendlf: begin
@@ -1618,11 +1621,11 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
       default: begin
@@ -1646,24 +1649,15 @@ module fsm_uart
         init_tag_s    = 1'b0;
         en_tag_s      = 1'b0;
         en_cpt_s      = 1'b0;
-        init_c16_s    = 1'b0;
+        init_c8_s    = 1'b0;
         init_c17_s    = 1'b0;
-        init_c32_s    = 1'b0;
+        init_c16_s    = 1'b0;
+        init_c185_s = 1'b0;
         init_c184_s   = 1'b0;
-        init_c366_s   = 1'b0;
         en_trans_s    = 1'b0;
       end
     endcase
   end : comb_1
 
-ila_0 your_instance_name (
-	.clk(clock_i), // input wire clk
-
-
-	.probe0(Key_o), // input wire [127:0]  probe0  
-	.probe1(Nonce_o), // input wire [127:0]  probe1 
-	.probe2(Ad_o), // input wire [63:0]  probe2 
-	.probe3(Wave_o) // input wire [1471:0]  probe3
-);
 
 endmodule : fsm_uart

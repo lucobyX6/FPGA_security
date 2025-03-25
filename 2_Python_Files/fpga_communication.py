@@ -266,8 +266,9 @@ class fpga_communication:
             
             return ret[:-3].hex()
         
-        def decrypt_cipher(self, cipher, tag):
-            plain_text = ap.ascon_decrypt(key = self.key, nonce = self.nonce, associateddata = self.da, ciphertext = self.cipher+self.tag, variant="Ascon-128")
+        def decrypt_cipher(self):
+            ciphertext_bytes = bytes.fromhex(self.cipher + self.tag)
+            plain_text = ap.ascon_decrypt(key = self.key, nonce = self.nonce, associateddata = self.da, ciphertext = ciphertext_bytes, variant="Ascon-128")
             return plain_text
         
         def display_ecg(self, list):
