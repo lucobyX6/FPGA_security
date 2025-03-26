@@ -8,7 +8,6 @@ _Abstract : FPGA project on Xilinx Pynq Z2. This project encrypt a communication
 
 ## Tree structure
 
-> **0_Documentation** : Doc, like presentation or quickstart \
 > **1_Source_Files** : Files from Vivado \
 > **2_Python_Files** : Files of class and to execute the project \
 > **3_Data** : Waveforms
