@@ -94,3 +94,10 @@ A **Pmod A UART** is required. You can buy it with this link : https://digilent.
 [1] ASCON documentation : https://ascon.isec.tugraz.at/specification.html
 
 [2] Pynq Z2 documenation : https://dpoauwgwqsy2x.cloudfront.net/Download/PYNQ_Z2_User_Manual_v1.1.pdf 
+
+# Authors
+
+EMSE - ISMIN Student : Lucas VINCENT
+EMSE - ISMIN Student : Mathieu MORUCCI
+
+*Thanks to : Jean-Baptiste RIGAUD and Olivier POTIN, for the codes and debug.*
